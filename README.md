@@ -1,6 +1,6 @@
 # finalfrontier
 
-Team: Devin Zhang and Randy LU
+Team: Devin Zhang and Randy Lu
 
 ## Description
 
