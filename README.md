@@ -1,6 +1,6 @@
-# finalfrontier
+# proj name undecided
 
-Team: Devin Zhang and Randy Lu
+Team: Devin Zhang and Randy Lu, Period 10
 
 ## Description
 
