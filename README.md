@@ -2,10 +2,10 @@
 
 Team: Devin Zhang and Randy LU
 
-#Description
+# Description
 
 
-#List of Required Libraries
+# List of Required Libraries
 
 
-#Instructions on How to Use Project
+# Instructions on How to Use Project
