@@ -1,4 +1,4 @@
-# Quizzify
+# Quizzify (subject to change)
 
 Team: Devin Zhang and Randy Lu, Period 10
 
