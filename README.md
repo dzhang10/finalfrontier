@@ -14,10 +14,12 @@ __ProjectName__ will allow users to create quizzes, take quizzes that are alread
   - If a user started making a quiz and quits (ctl+c) before the quiz is confirmed, the quiz file will be delelted and the user will see a confirmation.
   
 ### Project Breakdown and Responsibilities
-  - Inital User Interface
-  - Making the Quiz
-  - Taking the Quiz
-  - Seeing the Quiz Results
+  - Inital User Interface: Devin Zhang
+  - Making the Quiz: Devin Zhang & Randy Lu
+  - Taking the Quiz: Devin Zhang & Randy Lu
+  - Seeing the Quiz Results/Statistics: Randy Lu
+  
+  See DEVLOG for more specific tasks and contribution from team member.
   
 ### Data Structures/Algorithms
   - When entering the information to create a quiz, the content of each questions (the actual question, type of question, choices (if applicable), and correct answer) will be stored into an array. 
@@ -31,7 +33,11 @@ __ProjectName__ will allow users to create quizzes, take quizzes that are alread
   - As the quiz maker, you will be able to see the responses to your quiz. By entering the quiz id and the pin number that you set when you created the quiz, a function will read in the contents of the quiz's response file into an array. Another function will print the contents out into the terminal.
 
 ## Project Timeline
- 
+  - 01/13/2021 Inital User Interface + Staistic functions
+  - 01/15/2021 Making the Quiz Interface
+  - 01/18/2021 Taking the Quiz Interface
+  - 01/21/2021 Seeing the Quiz Interface
+  - 01/23/2021 Bug checks and Sample Quizzes
 
 ## List of Required Libraries
 
