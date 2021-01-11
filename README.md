@@ -20,7 +20,15 @@ __ProjectName__ will allow users to create quizzes, take quizzes that are alread
   - Seeing the Quiz Results
   
 ### Data Structures/Algorithms
-
+  - When entering the information to create a quiz, the content of each questions (the actual question, type of question, choices (if applicable), and correct answer) will be stored into an array. 
+  - When all the questions are inputted, the questions will be put into a cvs file with a new line separating each question.
+  - The contents of each quiz will be stored in its own unique file (named by a unique Quiz ID that will be assigned).
+  
+  - The file will be read in by a function and it will be parsed into various arrays (one for questions, for the choices, and one for the correct asnwer). Another functions will print the contents of the array into the termainal in an user-friendly way. 
+  - As the quiz taker enters their answers, a temporary array will store the user's answers. When all the questions have been answered, a functions will match the answers provided with the correct answer and score the quiz taker's info into a file.
+  - The user will see their score as a fraction and a percentage (rounded to nearest percent). Following the score will be all the questions (with correct ones and incorrect ones shown differently). 
+  
+  - As the quiz maker, you will be able to see the responses to your quiz. By entering the quiz id and the pin number that you set when you created the quiz, a function will read in the contents of the quiz's response file into an array. Another function will print the contents out into the terminal.
 
 ## Project Timeline
  
