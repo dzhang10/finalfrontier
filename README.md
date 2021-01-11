@@ -30,15 +30,21 @@ __ProjectName__ will allow users to create quizzes, take quizzes that are alread
   - As the quiz taker enters their answers, a temporary array will store the user's answers. When all the questions have been answered, a functions will match the answers provided with the correct answer and score the quiz taker's info into a file.
   - The user will see their score as a fraction and a percentage (rounded to nearest percent). Following the score will be all the questions (with correct ones and incorrect ones shown differently). 
   
-  - As the quiz maker, you will be able to see the responses to your quiz. By entering the quiz id and the pin number that you set when you created the quiz, a function will read in the contents of the quiz's response file into an array. Another function will print the contents out into the terminal.
+  - As the quiz maker, you will be able to see the responses to your quiz. By entering the quiz id and the pin number that you set when you created the quiz, a function will read in the contents of the quiz's response file into an array. Another function will print the contents out into the terminal. There will also be test statistic avaliable.
 
 ## Project Timeline
-  - 01/13/2021 Inital User Interface + Staistic functions
+  - 01/13/2021 Inital User Interface + Statistic functions
   - 01/15/2021 Making the Quiz Interface
   - 01/18/2021 Taking the Quiz Interface
   - 01/21/2021 Seeing the Quiz Interface
   - 01/23/2021 Bug checks and Sample Quizzes
 
 ## List of Required Libraries
-
+  - <stdlib.h>
+  - <stdio.h>
+  - <strings.h>
+  - <time.h>
+  - <signal.h>
+  - <math.h>
+  
 ## Instructions on How to Use Project
