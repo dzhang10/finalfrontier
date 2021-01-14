@@ -1,1 +1,7 @@
 This is the DEVLOG
+
+01/13/2021 - Devin Zhang
+    - Adapted the server and client code from the Server Homework
+    - Added the intial user interface: Once the client and the server are connected. 
+      You have type in one of three options (Make, Take, or Results) and a message
+      will confirm which one you choose.
