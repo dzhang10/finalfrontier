@@ -5,3 +5,14 @@ This is the DEVLOG
     - Added the intial user interface: Once the client and the server are connected. 
       You have type in one of three options (Make, Take, or Results) and a message
       will confirm which one you choose.
+     
+    Functions added: void clear_buffer(char *buffer);
+    Functions added: void process(char *msg);
+
+01/15/2021 - Devin Zhang
+    - Added the function to make the quiz. Ask for name and number of question. The a txt file will be
+      created and questions will be added in one by one.
+    
+    Functions added: toClient.c
+    Functions started: void addquestion(int ques_num);
+    Functions started: void makequiz();
