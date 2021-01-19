@@ -9,10 +9,42 @@ This is the DEVLOG
     Functions added: void clear_buffer(char *buffer);
     Functions added: void process(char *msg);
 
+
 01/15/2021 - Devin Zhang
-    - Added the function to make the quiz. Ask for name and number of question. The a txt file will be
-      created and questions will be added in one by one.
+    - Start the function to make the quiz. Ask for quiz name, number of question, and quiz pin.
+      Then you will be asked to input the contents of each question: the actual question, 
+      if the question is a multiple choice or short response, the choices (if it is 
+      multiple choice), and the correct answer.
     
     Functions added: toClient.c
     Functions started: void addquestion(int ques_num);
     Functions started: void makequiz();
+
+
+01/16/2021 - Devin Zhang
+    - Added the quizID_gen that will generate a random int to be the id of the quiz. It will 
+      check with id.txt which contains all the ids that are currently being used. 
+
+    Function added: quizID_gen();
+    Function added: void print_array();
+    Function added: void parse_args();
+    Function added: int array_len(char **array);
+    Function removed: void addquestion(int ques_num);
+
+
+
+01/17/2021 - Devin Zhang
+    - continued on makequiz(). Added the code to create the two unique txt files in the 
+      correct directories. One for the content of the quiz and one for the results of
+      the quiz after it is taken by an user.
+    - added code to append the quiz id and pin to their respective file.
+    - addded a reminder for the user to jot down their quizID and quizPin
+
+    Function added: static void sighandler(int signo);
+    Function completed: void makequiz();
+
+01/18/2021 - Devin Zhang
+    - started the takequiz()
+
+
+    Function started: takequiz()

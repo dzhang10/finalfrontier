@@ -1,0 +1,4 @@
+Sample Quiz: NYC
+Which state is NYC located in?\M\NY\NJ\CA\MA\A
+What is the fullname of NYC?\S\New York City
+How many boroughs are in NYC?\S\5
