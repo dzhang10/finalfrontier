@@ -66,6 +66,10 @@ Quizzify will allow users to create quizzes, take quizzes that are already creat
   8. You will get a reminder to write down the quizID and quizPin. Users need the quizID to take the quiz and the creator
      needs both to access the results of the quiz.
   9. Type "Done" to get back to the inital prompt. 
-  
+
+### Taking a Quiz
+  1. Once you run both the server and the client, type "Take" to start taking the quiz.
+  2. Enter the ID of the Quiz that you want to take and then your name.
+  3. 
   
 ## Attempted
