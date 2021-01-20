@@ -47,4 +47,25 @@ Quizzify will allow users to create quizzes, take quizzes that are already creat
   - <signal.h>
   - <math.h>
   
-## Instructions on How to Use Project
+## Setting up the Server and Client 
+  1. Download or clone the entire repo.
+  2. $make
+  3. run ./server first on a terminal
+  4. run ./client second on another terminal
+  5. You will see a welcome message and then follow the prompt
+  Note: You must enter the required response in order for the program to work.
+### Making the Quiz
+  1. Once you run both server and client, type "Make" to start making a quiz.
+  2. Enter a Quiz Name
+  3. Enter the number of questions using numbers
+  4. Enter a 4-Digit pin for your quiz (this is used to access the quiz results later on)
+  5. You will be prompted to enter the question, the type of question ("M" for multiple choice and "S" for short response)
+  6. If you choose M then you will enter 4 choices and then the letter of the correct answer choice
+     If you choose S then you will be prompt to enter the correct answer
+  7. At this point, the quiz is not yet created. Type "Go" to actually make the quiz and store it.
+  8. You will get a reminder to write down the quizID and quizPin. Users need the quizID to take the quiz and the creator
+     needs both to access the results of the quiz.
+  9. Type "Done" to get back to the inital prompt. 
+  
+  
+## Attempted
