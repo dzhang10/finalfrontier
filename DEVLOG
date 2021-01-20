@@ -44,7 +44,18 @@ This is the DEVLOG
     Function completed: void makequiz();
 
 01/18/2021 - Devin Zhang
-    - started the takequiz()
+    - started the takequiz() which is the function used to take the quiz. It first ask for 
+      the quizID and the user's name. Then it will show the questions one at a time and 
+      ask for a response (Letter ABCD for multiple choice or short-response answer).
+    - the correct answers and the user answers will be stored in an array and is compared
+      to compute a score (fraction correct out of whole) and a percentage.
+    - the questions that the user answered incorrectly will be stored in another array.
 
-
-    Function started: takequiz()
+    Function started: void takequiz();
+    
+01/19/2021 - Devin Zhang
+    - the user's name, score, and questions that are wrong are stored in the unique results
+      file in the results directory. This data will be used in the show results section.
+      
+    Function completed: void takequiz();
+    
