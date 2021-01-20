@@ -1,0 +1,6 @@
+All About Devin
+What is my last name?\S\Zhang
+What is my age?\S\18
+What school do I go to?\S\Stuyvesant
+What is my favorite pet?\M\Dog\Cat\Turtle\Bird\A
+What computer system am I using?\M\MacOS\Windows\Linux\IDK\B

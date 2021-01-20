@@ -67,7 +67,6 @@ int arraylen(char **array){
 
 }
 
-
 int quizID_gen(){
 
 	srand(time(NULL));
@@ -81,6 +80,8 @@ int quizID_gen(){
 	stat(file, buf);
 	int size = buf->st_size;
 	printf("Size of id.txt: %d\n",size);
+
+	free(buf);
 
 	char *raw_content = malloc(sizeof(char) * (size+25));
 	read(fd, raw_content, size);
@@ -123,6 +124,7 @@ int quizID_gen(){
 			}
 			else if(i+1==array_len){
 				free(processed_content);
+				free(raw_content);
 				printf("last id element checked\n");
 				return id;
 			}
@@ -354,6 +356,231 @@ void makequiz(){
 }
 
 
+void takequiz(){
+	toClient("Let's Take A Quiz!\nQuiz ID: ");
+	int n;
+
+
+	//TAKE IN QUIZID
+	char quiz_id[25];
+        read(cts, &n,sizeof(int));
+        read(cts, &quiz_id,sizeof(char) * n);
+        printf("QuizID Received: %s\n",quiz_id);
+
+
+	//TAKE IN USER'S NAME
+	char user_name[250];
+	toClient("Your name: ");
+        read(cts, &n,sizeof(int));
+        read(cts, &user_name,sizeof(char) * n);
+        printf("User Name Received: %s\n",user_name);
+
+
+	//Convert ID to corresponding txt file
+	char *fileName = malloc(sizeof(char) * 50);;
+	strcpy(fileName,"quizzes/");
+	strcat(fileName,quiz_id);
+	strcat(fileName,".txt");
+	printf("fileName: %s\n",fileName);
+
+
+	//OPEN THE QUIZ FILE AND READ IT IN
+
+	int fd = open(fileName, O_RDONLY);
+
+	struct stat *buf;
+	buf = malloc(sizeof(struct stat));
+	stat(fileName, buf);
+	int size = buf->st_size;
+	printf("Size of %s: %d\n", fileName, size);
+	free(buf);
+	free(fileName);
+	char *raw_content = malloc(size+100);
+	read(fd, raw_content, size);
+
+
+	char **processed_content = malloc(size*2);
+
+        char *token;
+        int counter = 0;
+
+        while(raw_content){
+                token = strsep(&raw_content,"\n");
+                processed_content[counter] = token;
+                counter++;
+        }
+        processed_content[counter] = NULL;
+
+        print_array(processed_content);
+        int quesNum = arraylen(processed_content) - 1 ;
+ 	printf("num element in processed_content: %d\n",quesNum);
+	free(raw_content);
+
+	//SETUP 2 ARRAYS: ONE FOR USER ANSWER AND ONE FOR CORRECT ANSWER
+	char **user_answer = malloc(quesNum * 500);
+	char **correct_answer = malloc(quesNum *500);
+
+	//ASK QUESTION, GET USER RESPONSE, AND PUT CORRECT ANSWER INTO CORRECT_ANSWER
+	int i;
+	for(i=1; i<= quesNum ; i++){
+		char **question_content = malloc(quesNum * 1500);
+		printf("In For Loop and memory allocated\n");
+
+     		counter = 0;
+        	while(processed_content[i]){
+                	token = strsep(&processed_content[i],"\\");
+                	question_content[counter] = token;
+                	counter++;
+        	}
+        	question_content[counter] = NULL;
+
+        	print_array(question_content);
+        	int array_len = arraylen(question_content);
+        	printf("num element in question_content: %d\n",array_len);
+
+
+		char num[5];
+		sprintf(num, "%d", i);
+
+		char question_toClient[2000];
+		if(strcmp(question_content[1],"M")==0){
+			printf("multiple choice; i=%d\n",i);
+			strcpy(question_toClient,"\nQuestion Number ");
+			strcat(question_toClient, num);
+			strcat(question_toClient,"\n");
+
+			strcat(question_toClient,question_content[0]);
+			printf("added question\n");
+			strcat(question_toClient,"\n(A) ");
+			strcat(question_toClient,question_content[2]);
+			printf("added choice A\n");
+			strcat(question_toClient,"\n(B) ");
+			strcat(question_toClient,question_content[3]);
+			printf("added choice B\n");
+			strcat(question_toClient,"\n(C) ");
+			strcat(question_toClient,question_content[4]);
+			printf("added choice C\n");
+			strcat(question_toClient,"\n(D) ");
+			strcat(question_toClient,question_content[5]);
+			printf("added choice D\n");
+			strcat(question_toClient,"\nYour Answer: ");
+
+			correct_answer[i-1] = question_content[6];
+			printf("Correct answer: %s\n",correct_answer[i-1]);
+
+			char *response = malloc(sizeof(char) * 250);
+			toClient(question_toClient);
+			read(cts, &n, sizeof(int));
+			read(cts, response, sizeof(char) * n);
+			user_answer[i-1] = response;
+			printf("user_answer[%d]: %s\n",i-1,user_answer[i-1]);
+
+		}
+		else{
+			printf("\nShort response; i=%d\n",i);
+			strcpy(question_toClient,"\nQuestion Number ");
+                        strcat(question_toClient, num);
+                        strcat(question_toClient,"\n");
+			strcat(question_toClient,question_content[0]);
+                        strcat(question_toClient,"\nYour Answer: ");
+
+			correct_answer[i-1] = question_content[2];
+			printf("Correct answer: %s\n",correct_answer[i-1]);
+
+			char *response = malloc(sizeof(char) * 250);
+			toClient(question_toClient);
+			read(cts, &n, sizeof(int));
+			read(cts, response, sizeof(char) * n);
+			user_answer[i-1] = response;
+			printf("user_answer[%d]: %s\n",i-1,user_answer[i-1]);
+
+		}
+	}
+
+	printf("Time to Grade\nCorrect Answers\n");
+	print_array(correct_answer);
+	printf("\nUser Answers\n");
+	print_array(user_answer);
+
+	//Grading
+	char ** mistakes = malloc(sizeof(char) * quesNum * 10);
+	int mistake_counter=0;
+	int score = 0;
+	for(i=0; i< quesNum; i++){
+		printf("in for loop: i=%d\n",i);
+		if(strcmp(correct_answer[i],user_answer[i])==0)
+			score++;
+		else{
+			char *num = malloc(sizeof(char) * 4);
+			sprintf(num, "%d", i+1);
+			mistakes[mistake_counter] = num;
+			mistake_counter++;
+		}
+	}
+
+	double percent = (double)score/quesNum*100;
+	printf("Score: %d    Percentage: %f\n",score,percent);
+	print_array(mistakes);
+
+	free(correct_answer);
+	free(user_answer);
+
+	char score_C[5];
+        sprintf(score_C, "%d", score);
+
+        char quesNum_C[5];
+        sprintf(quesNum_C, "%d", quesNum);
+
+        char percent_C[18];
+        sprintf(percent_C, "%f", percent);
+
+	//ADD THE RESULTS IN THE QUIZ'S RESULT'S FILE
+
+	char result_msg[1000];
+	strcpy(result_msg,user_name);
+	strcat(result_msg,",");
+	strcat(result_msg,percent_C);
+
+	for(i=0; i<arraylen(mistakes); i++){
+		strcat(result_msg, ",");
+		strcat(result_msg,mistakes[i]);
+	}
+
+	char *result_file = malloc(100);
+        strcpy(result_file,"results/");
+        strcat(result_file, quiz_id);
+	strcat(result_file, ".txt");
+	printf("result file: %s\n",result_file);
+
+	printf("result_msg: %s\n", result_msg);
+
+	n = strlen(result_msg);
+
+	int rf = open(result_file, O_APPEND | O_WRONLY, 0764);
+	write(rf,"\n",1);
+	write(rf,result_msg, n);
+
+	close(rf);
+	free(result_file);
+	//RETURNS THE USER THEIR SCORE (PERCENT AND FRACTION)
+
+	char score_msg[2000];
+	strcpy(score_msg,"\nHere is your score:\n\tScore: ");
+	strcat(score_msg,score_C);
+	strcat(score_msg," of ");
+	strcat(score_msg,quesNum_C);
+	strcat(score_msg,"\n\tPercentage: ");
+	strcat(score_msg,percent_C);
+	strcat(score_msg,"\n\nType Done to Finish\n");
+	toClient(score_msg);
+
+	char reply[100];
+        read(cts, &n, sizeof(int));
+        read(cts, &reply, sizeof(char) * n);
+
+	printf("End of TAKEQUIZ\n");
+}
+
 int main() {
 
 	signal(SIGINT, sighandler);
@@ -398,7 +625,8 @@ int main() {
 					toClient("END");
 				}
 				else if(strcmp(buffer,"Take")==0){
-					toClient("Let's Take A Quiz!");
+					takequiz();
+					toClient("END");
 				}
 				else if(strcmp(buffer,"Result")==0){
 					toClient("Let's See What We Have!");
