@@ -32,7 +32,6 @@ This is the DEVLOG
     Function removed: void addquestion(int ques_num);
 
 
-
 01/17/2021 - Devin Zhang
     - continued on makequiz(). Added the code to create the two unique txt files in the 
       correct directories. One for the content of the quiz and one for the results of
@@ -42,6 +41,7 @@ This is the DEVLOG
 
     Function added: static void sighandler(int signo);
     Function completed: void makequiz();
+
 
 01/18/2021 - Devin Zhang
     - started the takequiz() which is the function used to take the quiz. It first ask for 
@@ -53,6 +53,7 @@ This is the DEVLOG
 
     Function started: void takequiz();
     
+
 01/19/2021 - Devin Zhang
     - the user's name, score, and questions that are wrong are stored in the unique results
       file in the results directory. This data will be used in the show results section.
@@ -60,3 +61,14 @@ This is the DEVLOG
     Function completed: void takequiz();
  
 
+01/20/2021 - Devin Zhang
+    - added the instruction for makequiz and takquiz
+    - debugged the makequiz() and takquiz()
+ 
+
+01/24/2021 - Devin Zhang
+    - started and finished the quizresults functions which displays the results of the quiz
+      for the user in STDOUT
+    - debugged the project
+
+    Function added: void quizresults()
