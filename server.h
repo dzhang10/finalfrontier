@@ -7,6 +7,7 @@
 #include <time.h>
 #include <signal.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 
 
 #ifndef SERVER_H
